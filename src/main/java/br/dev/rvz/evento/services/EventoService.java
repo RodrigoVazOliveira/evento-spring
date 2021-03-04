@@ -15,6 +15,15 @@ public class EventoService {
         eventos.add(evento);
     }
 
+    private boolean existeEvento(Evento evento) {
+        for (Evento evento1: eventos) {
+            if (evento1.getNomeEvento().equalsIgnoreCase(evento.getNomeEvento())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public List<Evento> listarEvento() {
         return eventos;
     }
