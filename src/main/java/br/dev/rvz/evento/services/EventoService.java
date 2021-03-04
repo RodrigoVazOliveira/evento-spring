@@ -3,6 +3,7 @@ package br.dev.rvz.evento.services;
 import br.dev.rvz.evento.models.Evento;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,11 @@ public class EventoService {
     List<Evento> eventos = new ArrayList<>();
 
     public void cadastrarEvento(Evento evento) {
-        eventos.add(evento);
+        if (!existeEvento(evento)) {
+            if (!evento.getDataDoEvento().isBefore(LocalDate.now())) {
+                eventos.add(evento);
+            }
+        }
     }
 
     private boolean existeEvento(Evento evento) {
